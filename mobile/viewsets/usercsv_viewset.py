@@ -10,9 +10,8 @@ from django.http import HttpResponse
 from ..models.usercsv import Usercsv
 
 
-
 class UserCSVViewSet(ModelViewSet):
-    queryset = Usercsv.objects.all()
+    queryset = Usercsv.objects.all().order_by('id')
     serializer_class = UserCSVSerializer
 
 
@@ -22,7 +21,7 @@ class UserCSVSearchView(ListAPIView):
     def get_queryset(self):
         search = self.request.query_params.get('q', None)
         if search is not None and search:
-            return Usercsv.objects.filter(Q(title__contains=search) | Q(description__contains=search))
+            return Usercsv.objects.filter(Q(title__contains=search) | Q(description__contains=search)).order_by('id')
         return []
 
 def uploadCSV(ModelViewSet):
@@ -54,7 +53,7 @@ class UserCSVExportView(View):
         response['Content-Disposition'] = 'attachment; filename="export.csv"'
 
         serializer = self.get_serializer(
-            Usercsv.objects.all(),
+            Usercsv.objects.all().order_by('id'),
             many=True
         )
         header = UserCSVSerializer.Meta.fields
