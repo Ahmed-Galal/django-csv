@@ -1,0 +1,13 @@
+*.pyc
+__pycache__/
+
+
+# User-specific stuff:
+.idea/*
+
+
+
+### Python ###
+# Byte-compiled / optimized / DLL files
+*.py[cod]
+*$py.class
