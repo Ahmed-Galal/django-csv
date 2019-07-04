@@ -1,5 +1,5 @@
 Django==1.11.22
 django-common==0.1.51
 django-cors-headers==2.1.0
-djangorestframework==3.6.4
+djangorestframework==3.9.1
 requests==2.20.1
